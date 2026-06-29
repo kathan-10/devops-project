@@ -1,35 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do App</title>
-
+    <title>Task Dashboard</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-
 <body>
 
-    <div class="container">
+<div class="dashboard-container">
 
-        <h1>📝 To-Do List</h1>
+    <div class="top-bar">
 
-        <form action="/add" method="POST">
-            <input type="text" name="task" placeholder="Enter your task..." required>
+        <div>
+            <h1>Welcome, {{ username }} 👋</h1>
+            <p>Manage your daily tasks</p>
+        </div>
+
+        <a href="/logout" class="logout-btn">Logout</a>
+
+    </div>
+
+    <div class="task-box">
+
+        <form action="/add" method="POST" class="task-form">
+
+            <input type="text" name="task" placeholder="Enter new task..." required>
+
             <button type="submit">Add Task</button>
+
         </form>
 
-        <ul>
+        <ul class="task-list">
+
             {% for task in tasks %}
+
             <li>
+
                 <span>{{ task[1] }}</span>
 
-                <a href="/delete/{{ task[0] }}">Delete</a>
+                <a href="/delete/{{ task[0] }}" class="delete-btn">
+                    Delete
+                </a>
+
             </li>
+
             {% endfor %}
+
         </ul>
 
     </div>
+
+</div>
 
 </body>
 </html>
